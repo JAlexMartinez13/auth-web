@@ -3,13 +3,13 @@ import bcrypt from "bcryptjs";
 
 const salt = '$2b$10$Ak0P/Qh2F6Z8WGg8DAHgoe'
 
-export default function Signup({ setToken, setIsUser }) {
+export default function Login({ setToken, setIsUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     const hashedPassword = bcrypt.hashSync(password, salt)
-    fetch("http://localhost:3001/users", {
+    fetch("http://localhost:3001/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export default function Signup({ setToken, setIsUser }) {
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Email:
@@ -43,10 +43,10 @@ export default function Signup({ setToken, setIsUser }) {
           />
         </label>
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Login" />
       </form>
-      <p>Already a user?</p>
-      <button onClick={() => setIsUser(true)}>Login</button>
+      <p>Don't have an account?</p>
+      <button onClick={() => setIsUser(false)}>Sign Up</button>
     </>
   );
-  }
+}
