@@ -45,4 +45,4 @@ export default function Signup({ setToken, setIsUser }) {
       <button onClick={() => setIsUser(true)}>Login</button>
     </>
   );
-}
+  }
